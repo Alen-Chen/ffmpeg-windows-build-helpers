@@ -1114,13 +1114,13 @@ build_ffmpeg() {
   # can't mix and match --enable-static --enable-shared unfortunately, or the final executable seems to just use shared if the're both present
   if [[ $shared == "shared" ]]; then
     output_dir=${output_dir}_shared
-    do_git_checkout $git_url ${output_dir}
+    do_git_checkout $git_url ${output_dir} "refs/tags/n2.2.2"
     final_install_dir=`pwd`/${output_dir}.installed
     extra_configure_opts="--enable-shared --disable-static $extra_configure_opts"
     # avoid installing this to system?
     extra_configure_opts="$extra_configure_opts --prefix=$final_install_dir"
   else
-    do_git_checkout $git_url $output_dir
+    do_git_checkout $git_url $output_dir "refs/tags/n2.2.2"
     extra_configure_opts="--enable-static --disable-shared $extra_configure_opts"
   fi
   cd $output_dir
